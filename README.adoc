@@ -165,12 +165,30 @@ NOTE: ここで使うBNFの記法は、テキストの記法ではなく、Assig
 【問2】試験範囲（8章、8.4節まで）で作成した状況におけるLox言語の構文規則を、本講義の演習で使用した記法のBNFで示しなさい。 +
 BNFは、 `codes/lox_8_4.bnf` に記述し、その結果が「 <<lox_8_4>> 」に反映されていることを確認すること。
 
-[[lox_8_4]]
-.8.4節までの構文規則を示したBNF
-[source,text]
-----
-include::{sourcesdir}/lox_8_4.bnf[]
-----
+program      ::= declaration* EOF
+declaration  ::= varDecl
+             | statement
+statement    ::= exprStmt
+             | printStmt
+exprStmt     ::= expression ";"
+printStmt    ::= "print" expression ";"
+varDecl      ::= "var" IDENTIFIER ( "=" expression )? ";"
+expression   ::= assignment
+assignment   ::= IDENTIFIER "=" assignment
+             | equality
+equality     ::= comparison ( ( "!=" | "==" ) comparison )*
+comparison   ::= term ( ( ">" | ">=" | "<" | "<=" ) term )*
+term         ::= factor ( ( "-" | "+" ) factor )*
+factor       ::= unary ( ( "/" | "*" ) unary )*
+unary        ::= ( "!" | "-" ) unary
+             | primary
+primary      ::= NUMBER
+             | STRING
+             | "true"
+             | "false"
+             | "nil"
+             | "(" expression ")"
+             | IDENTIFIER
 
 
 【問3】次のBNFで示される言語（Tinyと呼ぼう）を、後述のプログラム例を処理できる言語にしたい。 +
