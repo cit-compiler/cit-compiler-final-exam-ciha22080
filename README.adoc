@@ -190,6 +190,7 @@ primary      ::= NUMBER
              | "(" expression ")"
              | IDENTIFIER
 
+反映できなかったですごめんなさい
 
 【問3】次のBNFで示される言語（Tinyと呼ぼう）を、後述のプログラム例を処理できる言語にしたい。 +
 要求に応えられるよう、 `codes/tiny_lang.bnf` を編集しなさい。
